@@ -1,0 +1,69 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Error</title>
+    
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(135deg, #3498db, #8e44ad);
+                animation: gradient 15s linear infinite;
+            }
+    
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+    
+            .error-container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+    
+            .error-message {
+                font-size: 24px;
+                color: white;
+                margin-bottom: 20px;
+            }
+    
+            .try-again-link {
+                display: inline-block;
+                padding: 10px 20px;
+                background: black;
+                color: white;
+                text-decoration: none;
+                text-transform: uppercase;
+                border-radius: 25px;
+                transition: background 0.3s ease;
+            }
+    
+            .try-again-link:hover {
+                background: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-container">
+            <h2 class="error-message">The details you entered are incorrect.</h2>
+            <a class="try-again-link" href="{% url 'signin' %}">Try Again</a>
+        </div>
+    </body>
+    </html>
+    

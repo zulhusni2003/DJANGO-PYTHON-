@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <form action="save_update_product/{{data.productID}}" method="post">
+                {% csrf_token %}
+                
+                <h1 class="form-header">Update Product</h1>
+                
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" name="productName" placeholder="Enter product name" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="productPrice">Product Price</label>
+                    <input type="text" id="productPrice" name="productPrice" placeholder="Enter price" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="productQuantity">Product Quantity</label>
+                    <input type="text" id="productQuantity" name="productQuantity" placeholder="Enter quantity" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="productExpirationDate">Expiration Date</label>
+                    <input type="text" id="productExpirationDate" name="productExpirationDate" placeholder="Enter product expiration date" required />
+                    <div class="help">(e.g., YYYY-MM-DD)</div>
+                </div>
+                
+                <center><input type="submit" class="update-button" value="UPDATE"></center>
+            </form>
+        </div>
+        
+        <div class="button-wrapper">
+          <center><a href="{% url 'productSection' %}" class="back-button">Back</a></center>
+      </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+<style class="cp-pen-styles">
+  body {
+    background: rgb(213, 217, 224);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    display: flex;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: column;
+    padding:18px;
+}
+
+.form-wrapper {
+    padding: 20px;
+}
+
+.form-header {
+    background: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.form-group {
+    margin: 15px 0;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    max-width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.help {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.update-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.update-button:hover {
+    background: #2980b9;
+}
+
+.menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.close {
+    pointer-events: none;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    transition: transform 0.4s;
+    transform: translateX(-100%);
+    flex: 0.2;
+    overflow: hidden;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 20px 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+a:hover {
+    background-color: #333;
+}
+
+</style>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+  <form action="faq" method="post">
+    {% csrf_token %}  
+
+     <header>FAQ Section</header>
+     <label>Staff Id number</label>
+     <input type="text"   name="staffID" placeholder="Enter staff Id number" required="" />
+     <div class="help">At least 10 character</div>
+
+     <label>FaQ Id</label>
+     <input type="text"  name="faqID" placeholder="Enter FaQ id number" required="" />
+     <div class="help">e.g: Q01</div>
+
+     <label>Question</label>
+     <input type="text"  name="question" placeholder="Enter your question here" required="" />
+     <div class="help">Make your question for today</div>
+
+     <br>
+     <center><input type="submit" value="SUBMIT"></center>
+     <br><br>
+   </form>
+   
+
+  <input type="checkbox" id="active">
+  <label for="active" class="menu-btn"><span></span></label>
+  <label for="active" class="close"></label>
+  <div class="wrapper">
+      <ul>
+        <h2>View your question:</h2>
+          <li><a href="{% url 'faqtable' %}">Question</a></li>
+          <li><a href="{% url 'staffTable' %}">Staff</a></li>
+          <li><a href="{% url 'dashboard' %}">Home</a></li>
+      </ul>
+  </div>
+
+  <style>
+    /*----Form----*/
+
+    h1{
+      color: white;
+      position: absolute;
+      top: 25px;
+    }
+    html, body {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+ 
+    body {
+      background: rgb(213, 217, 224);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      background: linear-gradient(-45deg, #d84c22, #7361cbe6, #b13834, #109879);
+      background-size: 400% 400%;
+      animation: gradient 8s ease infinite;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+ 
+    form {
+      background: white;
+      width: 45%;
+      top: -6%;
+      left: 35.8%;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+      font-family: lato;
+      padding: 20px;
+      position: relative;
+      color: #333;
+      border-radius: 10px;
+    }
+  form header {
+      background: black;
+      padding: 30px 20px;
+      color: white;
+      font-size: 1.2em;
+      font-weight: 600;
+      border-radius: 10px 10px 0 0;
+    }
+    form label {
+      margin-left: 20px;
+      display: inline-block;
+      margin-top: 30px;
+      margin-bottom: 5px;
+      position: relative;
+    }
+    form label span {
+      color: #382626;
+      font-size: 2em;
+      position: absolute;
+      left: 2.4em;
+      top: -10px;
+    }
+    form input {
+      display: block;
+      width: 85%;
+      margin-left: 20px;
+      padding: 5px 20px;
+      font-size: 1em;
+      border-radius: 3px;
+      outline: none;
+      border: 1px solid #ccc;
+    }
+    form .help {
+      margin-left: 20px;
+      font-size: 0.8em;
+      color: black;
+    }
+    form button {
+      position: relative;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      font-family: inherit;
+      color: white;
+      background: black;
+      outline: none;
+      border: none;
+      padding: 2px 10px;
+      font-size: 1.3em;
+      font-weight: 400;
+      border-radius: 3px;
+      box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.4);
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+    } 
+    form button:hover {
+      background: black;
+    }
+    /*---*/
+    .wrapper{
+      position: fixed;
+      top: 0;
+      /*left: -100%;*/
+      right: -100%;
+      height: 100%;
+      width: 100%;
+      background: #000;
+      /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+      /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+     /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);*/
+      transition: all 0.6s ease-in-out;
+    }
+    #active:checked ~ .wrapper{
+      /*left: 0;*/
+      right:0;
+    }
+    .menu-btn{
+      position: absolute;
+      z-index: 2;
+      right: 20px;
+      /*left: 20px; */
+      top: 20px;
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      color: #fff;
+      /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+      /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+     /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
+      transition: all 0.3s ease-in-out;
+    }
+    .menu-btn span,
+    .menu-btn:before,
+    .menu-btn:after{
+        content: "";
+        position: absolute;
+        top: calc(50% - 1px);
+        left: 30%;
+        width: 60%;
+        border-bottom: 3px solid white;
+        transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    .menu-btn:before{
+      transform: translateY(-8px);
+    }
+    .menu-btn:after{
+      transform: translateY(8px);
+    }
+    
+    
+    .close {
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        transition: background .6s;
+    }
+    
+    /* closing animation */
+    #active:checked + .menu-btn span {
+        transform: scaleX(0);
+    }
+    #active:checked + .menu-btn:before {
+        transform: rotate(45deg);
+      border-color: #fff;
+    }
+    #active:checked + .menu-btn:after {
+        transform: rotate(-45deg);
+      border-color: #fff;
+    }
+    .wrapper ul{
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      height: 90%;
+      transform: translate(-50%, -50%);
+      list-style: none;
+      text-align: center;
+    }
+    .wrapper ul li{
+      height: 10%;
+      margin: 15px 0;
+    }
+    .wrapper ul li a{
+      text-decoration: none;
+      font-size: 23px;
+      font-weight: 500;
+      padding: 16px 25px;
+      color: white;
+      border-radius: 50px;
+      position: absolute;
+      line-height: 25px;
+      margin: 5px 20px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    .wrapper ul li a:after{
+      position: absolute;
+      content: "";
+      background: #fff;
+       /*background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);*/
+      /*background: linear-gradient(375deg, #1cc7d0, #2ede98);*/
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 50px;
+      transform: scaleY(0);
+      z-index: -1;
+      transition: transform 0.3s ease;
+    }
+    .wrapper ul li a:hover:after{
+      transform: scaleY(1);
+    }
+    .wrapper ul li a:hover{
+      color: #1a73e8;
+    }
+    input[type="checkbox"]{
+      display: none;
+    }
+    
+    #active:checked ~ .wrapper ul li a{
+      opacity: 1;
+    }
+    .wrapper ul li a{
+      transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translateX(100px);
+    }
+    #active:checked ~ .wrapper ul li a{
+        transform: none;
+        transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1); /* easeOutBackを緩めた感じ */
+       transition-delay: .6s;
+      transform: translateX(-100px);
+    }
+  </style>
+</head>  
+</html>
